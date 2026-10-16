@@ -15,3 +15,16 @@ const winCondition = [
     [0, 4, 8],
     [2, 4, 6]
 ]
+
+function cellClick(e){
+    const clickCell = e.target;
+    const cellIndex = cellClick.getAttribute("data-index");
+
+    if (board[cellIndex] !== "" || !gameActive){
+        return;
+    }
+    board[cellIndex] = currentPlayer;
+    clickCell.textContent = currentPlayer;
+
+    checkWin();
+}
