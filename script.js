@@ -1,4 +1,4 @@
-const cells = document.getElementById(".cell");
+const cells = document.querySelectorAll(".cell");
 const btn = document.getElementById("reset-button");
 
 let board = ["", "", "", "", "", "", "", "", ""];
@@ -27,4 +27,31 @@ function cellClick(e){
     clickCell.textContent = currentPlayer;
 
     checkWin();
+}
+
+function checkWin () {
+    let roundWon = false;
+    for (let i = 0; i < winCondition.length; i++){
+        const [a, b, c] = winCondition[i];
+
+        if (board[a] === "" || board[b] === "" || board[c] === ""){
+            continue;
+        }
+        if (board[a] === board[b] && board[b] === board[c]){
+            roundWon = true;
+            break;
+        }
+    }
+    if (roundWon) {
+        alert(`Player ${currentPlayer}!`);
+        gameActive = false;
+        return;
+    }
+
+    if (!board.includes("")){
+        alert("equal");
+        gameActive = false;
+        return;
+    }
+    currentPlayer = currentPlayer === "x" ? "0" : "X";
 }
