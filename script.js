@@ -1,5 +1,5 @@
 const cells = document.querySelectorAll(".cell");
-const btn = document.getElementById("reset-button");
+const btn = document.getElementById("reset-btn");
 
 let board = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
@@ -18,7 +18,7 @@ const winCondition = [
 
 function cellClick(e){
     const clickCell = e.target;
-    const cellIndex = cellClick.getAttribute("data-index");
+    const cellIndex = clickCell.getAttribute("data-index");
 
     if (board[cellIndex] !== "" || !gameActive){
         return;
@@ -43,7 +43,7 @@ function checkWin () {
         }
     }
     if (roundWon) {
-        alert(`Player ${currentPlayer}!`);
+        alert(`Player ${currentPlayer} Win!`);
         gameActive = false;
         return;
     }
@@ -53,7 +53,11 @@ function checkWin () {
         gameActive = false;
         return;
     }
-    currentPlayer = currentPlayer === "x" ? "0" : "X";
+    if (currentPlayer === "X"){
+        currentPlayer = "O";
+    }else{
+        currentPlayer = "X";
+    }
 }
 
 function resetGame() {
