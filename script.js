@@ -55,3 +55,20 @@ function checkWin () {
     }
     currentPlayer = currentPlayer === "x" ? "0" : "X";
 }
+
+function resetGame() {
+    board = ["", "", "", "", "", "", "", "", ""];
+    gameActive = true;
+    currentPlayer = "X";
+
+    cells.forEach(cell => {
+        cell.textContent = "";
+    });
+}
+
+cells.forEach(cell => {
+    cell.addEventListener("click", cellClick);
+
+})
+
+btn.addEventListener("click", resetGame);
